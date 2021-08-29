@@ -9,17 +9,17 @@ public class EmailTest {
 
 
     @Test
-    public void deveRetornarErroQuandoForNulo() {
+    public void shouldReturnErrorWhenIsNull() {
         Assertions.assertThrows(NullPointerException.class,  () -> Email.of(null));
     }
 
     @Test
-    public void deveRetornarErroQuandoEmailForInvalido() {
+    public void ShouldReturnErrorWhenIsInvalid() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Email.of("invalid.email"));
     }
 
     @Test
-    public void deveCriarInstanciaEmail() {
+    public void shouldCreateEmailInstance() {
         assertNotNull(Email.of("email@email.com"));
         assertNotNull(Email.of("email.test@email.com"));
         assertNotNull(Email.of("email.test@gmail.com.br"));
