@@ -72,6 +72,22 @@ class PlayerTest {
     }
 
     @Test
+    public void shouldCreatePlayerAsOptional() {
+        Player marta = Player.name(NAME)
+                .start(START)
+                .end(START.plusYears(1L))
+                .position(POSITION)
+                .salary(SALARY)
+                .build();
+
+        Assertions.assertEquals(NAME, marta.getName());
+        Assertions.assertEquals(START, marta.getStart());
+        Assertions.assertEquals(POSITION, marta.getPosition());
+        Assertions.assertEquals(SALARY, marta.getSalary());
+        Assertions.assertTrue(marta.getEmail().isEmpty());
+    }
+
+    @Test
     public void shouldNotAllowSetWrongPeriod() {
         Year end = START.plus(-1, ChronoUnit.YEARS);
         Player marta = PlayerTestDataBuilder.martaPlayer();
