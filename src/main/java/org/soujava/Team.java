@@ -1,8 +1,5 @@
 package org.soujava;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,13 +9,9 @@ public class Team {
 
     static final int SIZE = 20;
 
-    @NotBlank
     private String name;
 
-    @NotNull
-    @Size(max = SIZE)
     private List<Player> players = new ArrayList<>();
-
 
     @Deprecated
     Team() {
