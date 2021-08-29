@@ -29,26 +29,52 @@ public class PlayerDSL implements FluentPlayer,
 
     @Override
     public PlayerEnd start(Year start) {
-        return null;
+        Objects.requireNonNull(start, "start is required");
+        if (Year.now().isBefore(start)) {
+            throw new IllegalArgumentException("you cannot start in the future");
+        }
+        if (SOCCER_BORN.isAfter(start)) {
+            throw new IllegalArgumentException("Soccer was not born on this time");
+        }
+        this.start = start;
+        return this;
     }
 
     @Override
-    public PlayerPosition end(Year start) {
-        return null;
+    public PlayerPosition end(Year end) {
+        Objects.requireNonNull(end, "end is required");
+
+        if (start != null && start.isAfter(end)) {
+            throw new IllegalArgumentException("the last year of a player must be equal or higher than the start.");
+        }
+
+        if (SOCCER_BORN.isAfter(end)) {
+            throw new IllegalArgumentException("Soccer was not born on this time");
+        }
+        this.end = end;
+        return this;
     }
 
     @Override
     public PlayerSalary position(Position position) {
-        return null;
+        Objects.requireNonNull(position, "position is required");
+        this.position = position;
+        return this;
     }
 
     @Override
     public PlayerEmail salary(MonetaryAmount salary) {
-        return null;
+        Objects.requireNonNull(salary, "salary is required");
+        if (salary.isNegativeOrZero()) {
+            throw new IllegalArgumentException("A player needs to earn money to play; otherwise, it is illegal.");
+        }
+        this.salary = salary;
+        return this;
     }
 
     @Override
     public Player email(Email email) {
+        this.email = Objects.requireNonNull(email, "email is required");
         return null;
     }
 
