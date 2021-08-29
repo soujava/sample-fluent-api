@@ -44,8 +44,8 @@ public class Player {
         return start;
     }
 
-    public Email getEmail() {
-        return email;
+    public Optional<Email> getEmail() {
+        return Optional.ofNullable(email);
     }
 
     public Position getPosition() {
