@@ -20,33 +20,36 @@ class PlayerTest {
     @Test
     public void shouldReturnErrorWhenStartIsFuture() {
         Year year = Year.now().plus(1, ChronoUnit.YEARS);
-        assertThrows(IllegalArgumentException.class, () -> Player.builder().withStart(year));
+        assertThrows(IllegalArgumentException.class, () -> Player.name("Marta").start(year));
     }
 
     @Test
     public void shouldReturnErrorWhenStartBeforeSoccer() {
         Year year = Player.SOCCER_BORN.plus(-1, ChronoUnit.YEARS);
-        assertThrows(IllegalArgumentException.class, () -> Player.builder().withStart(year));
+        assertThrows(IllegalArgumentException.class, () -> Player.name("Marta").start(year));
     }
 
     @Test
     public void shouldReturnErrorWhenEndBeforeSoccer() {
         Year year = Player.SOCCER_BORN.plus(-1, ChronoUnit.YEARS);
-        assertThrows(IllegalArgumentException.class, () -> Player.builder().withEnd(year));
+        assertThrows(IllegalArgumentException.class, () -> Player.name("Marta").start(year).end(year));
     }
 
     @Test
     public void shouldReturnErrorWhenThereIsInvalidPeriod() {
         Year start = Year.now().plus(1, ChronoUnit.YEARS);
         Year end = Year.now();
-        assertThrows(IllegalArgumentException.class, () -> Player.builder().withStart(start).withEnd(end));
+        assertThrows(IllegalArgumentException.class, () -> Player.name("Marta").start(start).end(end));
     }
 
     @Test
     public void shouldRefuseNegativeSalary() {
         CurrencyUnit usd = Monetary.getCurrency(Locale.US);
         MonetaryAmount salary = Money.of(-1, usd);
-        assertThrows(IllegalArgumentException.class, () -> Player.builder().withSalary(salary));
+        var start = Year.now();
+        var end = start.plusYears(1L);
+        assertThrows(IllegalArgumentException.class, () ->
+                Player.name("Marta").start(start).end(end).position(Position.FORWARD).salary(salary));
     }
 
     @Test
@@ -84,43 +87,4 @@ class PlayerTest {
         Assertions.assertNotNull(marta);
     }
 
-    @Test
-    public void shouldCreateBuilderWithInstanceData() {
-        Player marta = PlayerTestDataBuilder.martaPlayer();
-        Player.PlayerBuilder builder = marta.toBuilder();
-        assertNotNull(builder);
-    }
-
-
-    @Test
-    public void shouldCreateInstanceWithPopulatedBuilder() {
-        Player marta = PlayerTestDataBuilder.martaPlayer();
-        Player martaNew = marta.toBuilder().build();
-
-        assertEquals(marta.getName(), martaNew.getName());
-        assertEquals(marta.getStart(), martaNew.getStart());
-        assertEquals(marta.getEnd(), martaNew.getEnd());
-        assertEquals(marta.getEmail(), martaNew.getEmail());
-        assertEquals(marta.getPosition(), martaNew.getPosition());
-        assertEquals(marta.getSalary(), martaNew.getSalary());
-        assertEquals(marta.getGoal(), martaNew.getGoal());
-    }
-
-    @Test
-    public void shouldUpdateInstance() {
-        Player marta = PlayerTestDataBuilder.martaPlayer();
-        Player.PlayerBuilder builder = marta.toBuilder();
-
-        Email newEmail = Email.of("newemail@email.com");
-
-        Player martaUpdated = builder.withEmail(newEmail).build();
-
-        assertEquals(marta.getName(), martaUpdated.getName());
-        assertEquals(marta.getStart(), martaUpdated.getStart());
-        assertEquals(marta.getEnd(), martaUpdated.getEnd());
-        assertEquals(newEmail, martaUpdated.getEmail());
-        assertEquals(marta.getPosition(), martaUpdated.getPosition());
-        assertEquals(marta.getSalary(), martaUpdated.getSalary());
-        assertEquals(marta.getGoal(), martaUpdated.getGoal());
-    }
 }
