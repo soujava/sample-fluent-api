@@ -26,7 +26,6 @@ public class PlayerDSL implements FluentPlayer,
 
     private MonetaryAmount salary;
 
-
     @Override
     public PlayerEnd start(Year start) {
         Objects.requireNonNull(start, "start is required");
@@ -80,6 +79,6 @@ public class PlayerDSL implements FluentPlayer,
 
     @Override
     public Player build() {
-        return null;
+        return new Player(name, start, end, email, position, salary);
     }
 }
