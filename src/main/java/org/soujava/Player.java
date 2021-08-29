@@ -2,6 +2,7 @@ package org.soujava;
 
 import javax.money.MonetaryAmount;
 import java.time.Year;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Player {
@@ -72,6 +73,10 @@ public class Player {
             throw new IllegalArgumentException("the last year of a player must be equal or higher than the start.");
         }
         this.end = end;
+    }
+
+    public static FluentPlayer name(String name) {
+        return new PlayerDSL(Objects.requireNonNull(name, "name is required"));
     }
 
 
