@@ -51,12 +51,12 @@ class PlayerTest {
 
     @Test
     public void shouldCreateInstance() {
-        Player marta = Player.builder().withName(NAME)
-                .withEmail(EMAIL)
-                .withSalary(SALARY)
-                .withStart(START)
-                .withPosition(POSITION)
-                .build();
+        Player marta = Player.name(NAME)
+                .start(START)
+                .end(START.plusYears(1L))
+                .position(POSITION)
+                .salary(SALARY)
+                .email(EMAIL);
 
         Assertions.assertNotNull(marta);
     }
