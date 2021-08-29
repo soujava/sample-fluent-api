@@ -4,13 +4,13 @@ import javax.money.MonetaryAmount;
 import java.time.Year;
 import java.util.Objects;
 
-public class PlayerDSL implements FluentPlayer,
+public class PlayerBuilder implements FluentPlayer,
         FluentPlayer.PlayerEnd, FluentPlayer.PlayerEmail, FluentPlayer.PlayerPosition,
         FluentPlayer.PlayerSalary {
 
     static final Year SOCCER_BORN = Year.of(1863);
 
-    PlayerDSL(String name) {
+    PlayerBuilder(String name) {
         this.name = name;
     }
 

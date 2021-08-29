@@ -78,9 +78,9 @@ class PlayerTest {
 
         Player marta = Player.name("Marta")
                 .start(start)
-                .end(end).email(email)
+                .end(end)
                 .position(Position.FORWARD)
-                .salary(salary);
+                .salary(salary).email(email);
         Assertions.assertNotNull(marta);
     }
 
