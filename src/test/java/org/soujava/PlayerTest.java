@@ -72,7 +72,7 @@ class PlayerTest {
     }
 
     @Test
-    public void shouldCreatePlayerAsOptional() {
+    public void shouldCreatePlayerWithEmailAsOptional() {
         Player marta = Player.name(NAME)
                 .start(START)
                 .end(START.plusYears(1L))
