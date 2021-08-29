@@ -10,7 +10,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.eclipse.jnosql.artemis:artemis-document:1.0.0-b2'
     implementation 'org.javamoney.moneta:moneta-core:1.4.2'
     implementation 'org.hibernate:hibernate-validator:6.2.0.Final'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
