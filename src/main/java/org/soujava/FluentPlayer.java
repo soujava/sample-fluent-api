@@ -5,19 +5,10 @@ import java.time.Year;
 
 public interface FluentPlayer {
 
-
-    PlayerStart name(String name);
-
-    interface PlayerStart {
-        PlayerEnd start(Year start);
-    }
+   PlayerEnd start(Year start);
 
     interface  PlayerEnd {
-        PlayerEmail end(Year start);
-    }
-
-    interface PlayerEmail {
-        PlayerPosition email(Email email);
+        PlayerPosition end(Year start);
     }
 
     interface PlayerPosition {
@@ -25,7 +16,14 @@ public interface FluentPlayer {
     }
 
     interface PlayerSalary {
-        Player salary(MonetaryAmount salary);
+        PlayerEmail salary(MonetaryAmount salary);
+    }
+
+    interface PlayerEmail {
+        Player email(Email email);
+
+        Player build();
+
     }
 
 }
