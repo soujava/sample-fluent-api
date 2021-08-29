@@ -13,18 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TeamTest {
 
-
     @Test
     public void shouldReturnNPEWhenNameIsNull() {
         assertThrows(NullPointerException.class, () -> Team.of(null));
     }
 
-
     @Test
     public void shouldReturnErrorWhenPlayerIsNull() {
         Team bahia = Team.of("Bahia");
         assertThrows(NullPointerException.class, () -> bahia.add(null));
-
     }
 
     @Test
@@ -37,23 +34,24 @@ class TeamTest {
             MonetaryAmount salary = Money.of(1_000_000, usd);
             Email email = Email.of(index + "email@email.com");
 
-            Player player = Player.builder().withName("Player " + index)
-                    .withEmail(email)
-                    .withSalary(salary)
-                    .withStart(start)
-                    .withPosition(Position.FORWARD)
-                    .build();
+            Player player = Player
+                    .name("Player " + index)
+                    .start(start)
+                    .end(start.plusYears(1L))
+                    .position(Position.FORWARD)
+                    .salary(salary)
+                    .email(email);
             bahia.add(player);
         }
 
         MonetaryAmount salary = Money.of(1_000_000, usd);
         Email email = Email.of("email@email.com");
-        Player player = Player.builder().withName("Marta")
-                .withEmail(email)
-                .withSalary(salary)
-                .withStart(start)
-                .withPosition(Position.FORWARD)
-                .build();
+        Player player = Player.name("Marta")
+                .start(start)
+                .end(start.plusYears(1L))
+                .position(Position.FORWARD)
+                .salary(salary)
+                .email(email);
 
         assertThrows(IllegalArgumentException.class, () -> bahia.add(player));
     }
