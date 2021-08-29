@@ -62,6 +62,12 @@ class PlayerTest {
                 .email(EMAIL);
 
         Assertions.assertNotNull(marta);
+
+        Assertions.assertEquals(NAME, marta.getName());
+        Assertions.assertEquals(START, marta.getStart());
+        Assertions.assertEquals(POSITION, marta.getPosition());
+        Assertions.assertEquals(SALARY, marta.getSalary());
+        Assertions.assertEquals(EMAIL, marta.getEmail());
     }
 
     @Test
