@@ -74,7 +74,7 @@ public class PlayerBuilder implements FluentPlayer,
     @Override
     public Player email(Email email) {
         this.email = Objects.requireNonNull(email, "email is required");
-        return null;
+        return new Player(name, start, end, email, position, salary);
     }
 
     @Override
