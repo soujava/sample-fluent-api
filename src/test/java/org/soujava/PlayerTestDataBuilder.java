@@ -23,11 +23,12 @@ public class PlayerTestDataBuilder {
     public static final Position POSITION = Position.FORWARD;
 
     public static Player martaPlayer() {
-        return Player.builder().withName(NAME)
-                .withEmail(EMAIL)
-                .withSalary(SALARY)
-                .withStart(START)
-                .withPosition(POSITION)
-                .build();
+        return Player
+                .name(NAME)
+                .start(START)
+                .end(START.plusYears(1L))
+                .position(POSITION)
+                .salary(SALARY)
+                .email(EMAIL);
     }
 }
