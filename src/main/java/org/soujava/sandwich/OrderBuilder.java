@@ -1,5 +1,7 @@
 package org.soujava.sandwich;
 
+import org.javamoney.moneta.Money;
+
 import javax.money.MonetaryAmount;
 import java.util.Objects;
 
@@ -79,9 +81,11 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
     }
 
     private Checkout checkout() {
-        MonetaryAmount sandwichTotal = sandwich.getPrice().multiply(quantity);
-        MonetaryAmount drinkTotal = drink.getPrice().multiply(drinkQuantity);
-        MonetaryAmount total = sandwichTotal.add(drinkTotal);
+        MonetaryAmount total = sandwich.getPrice().multiply(quantity);
+        if (drink != null) {
+            MonetaryAmount drinkTotal = drink.getPrice().multiply(drinkQuantity);
+            total = total.add(drinkTotal);
+        }
         return new Checkout(sandwich, quantity, drink, drinkQuantity, total);
     }
 
