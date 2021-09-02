@@ -1,11 +1,8 @@
-package org.soujava;
+package org.soujava.player;
 
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.soujava.player.Email;
-import org.soujava.player.Player;
-import org.soujava.player.Position;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
@@ -14,7 +11,7 @@ import java.time.Year;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 
-import static org.soujava.PlayerTestDataBuilder.*;
+import static org.soujava.player.PlayerTestDataBuilder.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {

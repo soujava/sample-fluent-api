@@ -1,4 +1,4 @@
-package org.soujava;
+package org.soujava.player;
 
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package org.soujava;
+package org.soujava.player;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
