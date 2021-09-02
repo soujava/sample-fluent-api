@@ -1,4 +1,4 @@
-package org.soujava;
+package org.soujava.player;
 
 import javax.money.MonetaryAmount;
 import java.time.Year;

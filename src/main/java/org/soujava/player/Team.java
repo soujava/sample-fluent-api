@@ -1,4 +1,4 @@
-package org.soujava;
+package org.soujava.player;
 
 import java.util.ArrayList;
 import java.util.Collections;

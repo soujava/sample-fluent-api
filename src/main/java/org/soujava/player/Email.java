@@ -1,4 +1,4 @@
-package org.soujava;
+package org.soujava.player;
 
 import java.util.Objects;
 import java.util.function.Supplier;

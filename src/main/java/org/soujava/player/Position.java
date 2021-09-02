@@ -1,4 +1,4 @@
-package org.soujava;
+package org.soujava.player;
 
 public enum Position {
 

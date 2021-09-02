@@ -1,6 +1,9 @@
 package org.soujava;
 
 import org.javamoney.moneta.Money;
+import org.soujava.player.Email;
+import org.soujava.player.Player;
+import org.soujava.player.Position;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
