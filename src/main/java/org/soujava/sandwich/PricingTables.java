@@ -17,11 +17,11 @@ enum PricingTables {
 
     private final Map<Size, MonetaryAmount> sizePrice;
 
-    private final  Map<SandwichStyle, MonetaryAmount> stylePrice;
+    private final Map<SandwichStyle, MonetaryAmount> stylePrice;
 
-    private final  Map<DrinkType, MonetaryAmount> drinkPrice;
+    private final Map<DrinkType, MonetaryAmount> drinkPrice;
 
-    private final  Map<Bread, MonetaryAmount> breadPrice;
+    private final Map<Bread, MonetaryAmount> breadPrice;
 
     PricingTables() {
         CurrencyUnit currency = Monetary.getCurrency(Locale.US);
@@ -49,6 +49,12 @@ enum PricingTables {
         return ofNullable(this.drinkPrice.get(type))
                 .orElseThrow(() -> new IllegalArgumentException("There is not price to the drink " + type));
     }
+
+    MonetaryAmount getPrice(Bread bread) {
+        return ofNullable(this.breadPrice.get(bread))
+                .orElseThrow(() -> new IllegalArgumentException("There is not price to the bread " + bread));
+    }
+
 
     MonetaryAmount getPrice(SandwichStyle style) {
         return ofNullable(this.stylePrice.get(style))
