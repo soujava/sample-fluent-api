@@ -8,11 +8,14 @@ public class Sandwich {
 
     private final Bread bread;
 
+    private final Size size;
+
     private final MonetaryAmount price;
 
-    Sandwich(SandwichStyle style, Bread bread, MonetaryAmount price) {
+    Sandwich(SandwichStyle style, Bread bread, Size size, MonetaryAmount price) {
         this.style = style;
         this.bread = bread;
+        this.size = size;
         this.price = price;
     }
 
@@ -24,6 +27,10 @@ public class Sandwich {
         return bread;
     }
 
+    public Size getSize() {
+        return size;
+    }
+
     public MonetaryAmount getPrice() {
         return price;
     }
@@ -33,6 +40,7 @@ public class Sandwich {
         return "Sandwich{" +
                 "style=" + style +
                 ", bread=" + bread +
+                ", size=" + size +
                 ", price=" + price +
                 '}';
     }
