@@ -1,7 +1,5 @@
 package org.soujava.sandwich;
 
-import org.javamoney.moneta.Money;
-
 import javax.money.MonetaryAmount;
 import java.util.Objects;
 
@@ -20,8 +18,6 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
     private Drink drink;
 
     private int drinkQuantity;
-
-    private MonetaryAmount total;
 
     OrderBuilder(Bread bread) {
         this.bread = bread;
