@@ -12,8 +12,6 @@ public interface Order {
         StyleQuantityOrder vegan();
 
         StyleQuantityOrder meat();
-
-        Checkout checkout();
     }
 
     interface StyleQuantityOrder {
@@ -25,6 +23,8 @@ public interface Order {
         DrinksQuantityOrder softDrink();
 
         DrinksQuantityOrder cocktail();
+
+        Checkout noBeveragesThanks();
     }
 
     interface DrinksQuantityOrder {
