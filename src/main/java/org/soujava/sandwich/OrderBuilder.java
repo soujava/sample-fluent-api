@@ -60,7 +60,7 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
         }
         this.drinkQuantity = quantity;
         this.drink = new Drink(DrinkType.SOFT_DRINK, pricingTables.getPrice(DrinkType.SOFT_DRINK));
-        return null;
+        return checkout();
     }
 
     @Override
@@ -70,12 +70,19 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
         }
         this.drinkQuantity = quantity;
         this.drink = new Drink(DrinkType.COCKTAIL, pricingTables.getPrice(DrinkType.COCKTAIL));
-        return null;
+        return checkout();
     }
 
     @Override
     public Checkout noBeveragesThanks() {
-        return null;
+        return checkout();
+    }
+
+    private Checkout checkout() {
+        MonetaryAmount sandwichTotal = sandwich.getPrice().multiply(quantity);
+        MonetaryAmount drinkTotal = drink.getPrice().multiply(drinkQuantity);
+        MonetaryAmount total = sandwichTotal.add(drinkTotal);
+        return new Checkout(sandwich, quantity, drink, drinkQuantity, total);
     }
 
     private void createSandwich(SandwichStyle style) {
