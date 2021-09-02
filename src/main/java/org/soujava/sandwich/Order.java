@@ -1,5 +1,7 @@
 package org.soujava.sandwich;
 
+import java.util.Objects;
+
 public interface Order {
 
 
@@ -36,6 +38,7 @@ public interface Order {
     }
 
     static SizeOrder bread(Bread bread) {
-        return null;
+        Objects.requireNonNull(bread, "Bread is required o the order");
+        return new OrderBuilder(bread);
     }
 }
