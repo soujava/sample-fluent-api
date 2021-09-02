@@ -9,7 +9,11 @@ import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
 
-class PriceList {
+import static java.util.Optional.ofNullable;
+
+enum PricingTables {
+
+    INSTANCE;
 
     private final Map<Size, MonetaryAmount> sizePrice;
 
@@ -17,7 +21,9 @@ class PriceList {
 
     private final  Map<DrinkType, MonetaryAmount> drinkPrice;
 
-    PriceList() {
+    private final  Map<Bread, MonetaryAmount> breadPrice;
+
+    PricingTables() {
         CurrencyUnit currency = Monetary.getCurrency(Locale.US);
 
         this.sizePrice = new EnumMap<>(Size.class);
@@ -32,5 +38,25 @@ class PriceList {
         this.drinkPrice = new EnumMap<>(DrinkType.class);
         this.drinkPrice.put(DrinkType.SOFT_DRINK, Money.of(1, currency));
         this.drinkPrice.put(DrinkType.COCKTAIL, Money.of(6, currency));
+
+        this.breadPrice = new EnumMap<>(Bread.class);
+        this.breadPrice.put(Bread.PLAIN, Money.of(1, currency));
+        this.breadPrice.put(Bread.ITALIAN, Money.of(2, currency));
+        this.breadPrice.put(Bread.GLUTEN_FREE, Money.of(3, currency));
+    }
+
+    MonetaryAmount getPrice(DrinkType type) {
+        return ofNullable(this.drinkPrice.get(type))
+                .orElseThrow(() -> new IllegalArgumentException("There is not price to the drink " + type));
+    }
+
+    MonetaryAmount getPrice(SandwichStyle style) {
+        return ofNullable(this.stylePrice.get(style))
+                .orElseThrow(() -> new IllegalArgumentException("There is not price to the sandwich style " + style));
+    }
+
+    MonetaryAmount getPrice(Size size) {
+        return ofNullable(this.sizePrice.get(size))
+                .orElseThrow(() -> new IllegalArgumentException("There is not price to the size " + size));
     }
 }
