@@ -31,7 +31,7 @@ public interface Order {
         Checkout quantity(int quantity);
     }
 
-    static SizeOrder order(Bread bread) {
+    static SizeOrder bread(Bread bread) {
         return null;
     }
 }
