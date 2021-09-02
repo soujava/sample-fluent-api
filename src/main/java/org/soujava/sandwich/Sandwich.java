@@ -4,17 +4,24 @@ import javax.money.MonetaryAmount;
 
 public class Sandwich {
 
-    private final String name;
+    private final SandwichStyle style;
+
+    private final Bread bread;
 
     private final MonetaryAmount price;
 
-    Sandwich(String name, MonetaryAmount price) {
-        this.name = name;
+    Sandwich(SandwichStyle style, Bread bread, MonetaryAmount price) {
+        this.style = style;
+        this.bread = bread;
         this.price = price;
     }
 
-    public String getName() {
-        return name;
+    public SandwichStyle getStyle() {
+        return style;
+    }
+
+    public Bread getBread() {
+        return bread;
     }
 
     public MonetaryAmount getPrice() {
