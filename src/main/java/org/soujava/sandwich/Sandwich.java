@@ -27,4 +27,13 @@ public class Sandwich {
     public MonetaryAmount getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "style=" + style +
+                ", bread=" + bread +
+                ", price=" + price +
+                '}';
+    }
 }
