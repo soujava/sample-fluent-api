@@ -1,4 +1,5 @@
 package org.soujava.sandwich;
 
-public class Drink {
+public enum Drink {
+    SOFT_DRINK, COCKTAIL;
 }
