@@ -5,6 +5,8 @@ import java.util.Objects;
 
 class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuantityOrder, Order.DrinksOrder {
 
+    private final PricingTables pricingTables = PricingTables.INSTANCE;
+
     private final Bread bread;
 
     private Size size;
@@ -19,8 +21,6 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
 
     private MonetaryAmount total;
 
-    private SandwichStyle style;
-
     OrderBuilder(Bread bread) {
         this.bread = bread;
     }
@@ -34,13 +34,13 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
 
     @Override
     public Order.StyleQuantityOrder vegan() {
-        this.style = SandwichStyle.VEGAN;
+        createSandwich(SandwichStyle.VEGAN);
         return this;
     }
 
     @Override
     public Order.StyleQuantityOrder meat() {
-        this.style = SandwichStyle.MEAT;
+        createSandwich(SandwichStyle.MEAT);
         return this;
     }
 
@@ -59,7 +59,7 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
             throw new IllegalArgumentException("You must request at least one sandwich");
         }
         this.drinkQuantity = quantity;
-        this.drink = new Drink(DrinkType.SOFT_DRINK, null);
+        this.drink = new Drink(DrinkType.SOFT_DRINK, pricingTables.getPrice(DrinkType.SOFT_DRINK));
         return null;
     }
 
@@ -69,12 +69,20 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
             throw new IllegalArgumentException("You must request at least one sandwich");
         }
         this.drinkQuantity = quantity;
-        this.drink = new Drink(DrinkType.COCKTAIL, null);
+        this.drink = new Drink(DrinkType.COCKTAIL, pricingTables.getPrice(DrinkType.COCKTAIL));
         return null;
     }
 
     @Override
     public Checkout noBeveragesThanks() {
         return null;
+    }
+
+    private void createSandwich(SandwichStyle meat) {
+        MonetaryAmount breadPrice = pricingTables.getPrice(this.bread);
+        MonetaryAmount sizePrice = pricingTables.getPrice(this.size);
+        MonetaryAmount stylePrice = pricingTables.getPrice(SandwichStyle.VEGAN);
+        MonetaryAmount total = breadPrice.add(sizePrice).add(stylePrice);
+        this.sandwich = new Sandwich(meat, this.bread, this.size, total);
     }
 }
