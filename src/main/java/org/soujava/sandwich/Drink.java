@@ -1,2 +1,4 @@
-package org.soujava.sandwich;public class Drink {
+package org.soujava.sandwich;
+
+public class Drink {
 }
