@@ -78,11 +78,11 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
         return null;
     }
 
-    private void createSandwich(SandwichStyle meat) {
+    private void createSandwich(SandwichStyle style) {
         MonetaryAmount breadPrice = pricingTables.getPrice(this.bread);
         MonetaryAmount sizePrice = pricingTables.getPrice(this.size);
         MonetaryAmount stylePrice = pricingTables.getPrice(SandwichStyle.VEGAN);
         MonetaryAmount total = breadPrice.add(sizePrice).add(stylePrice);
-        this.sandwich = new Sandwich(meat, this.bread, this.size, total);
+        this.sandwich = new Sandwich(style, this.bread, this.size, total);
     }
 }
