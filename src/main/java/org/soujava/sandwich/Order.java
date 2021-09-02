@@ -20,15 +20,19 @@ public interface Order {
 
 
     interface DrinksOrder {
-        DrinksQuantityOrder softDrink();
+        DrinksCocktailOrder softDrink(int quantity);
 
-        DrinksQuantityOrder cocktail();
+        DrinksSoftDrinkOrder cocktail(int quantity);
 
         Checkout noBeveragesThanks();
     }
 
-    interface DrinksQuantityOrder {
-        Checkout quantity(int quantity);
+    interface DrinksCocktailOrder {
+        DrinksSoftDrinkOrder cocktail(int quantity);
+    }
+
+    interface DrinksSoftDrinkOrder {
+        DrinksCocktailOrder softDrink(int quantity);
     }
 
     static SizeOrder bread(Bread bread) {
