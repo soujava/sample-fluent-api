@@ -1,7 +1,23 @@
 package org.soujava.sandwich;
 
-public class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuantityOrder, Order.DrinksOrder,
+import javax.money.MonetaryAmount;
+
+class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuantityOrder, Order.DrinksOrder,
         Order.DrinksCocktailOrder, Order.DrinksSoftDrinkOrder {
+
+    private final Bread bread;
+
+    private Sandwich sandwich;
+
+    private int quantity;
+
+    private Drink drink;
+
+    private MonetaryAmount total;
+
+    OrderBuilder(Bread bread) {
+        this.bread = bread;
+    }
 
     @Override
     public Order.StyleOrder size(Size size) {
