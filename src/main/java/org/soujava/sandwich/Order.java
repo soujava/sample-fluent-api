@@ -31,6 +31,6 @@ public interface Order {
 
     static SizeOrder bread(Bread bread) {
         Objects.requireNonNull(bread, "Bread is required o the order");
-        return new OrderBuilder(bread);
+        return new OrderFluent(bread);
     }
 }

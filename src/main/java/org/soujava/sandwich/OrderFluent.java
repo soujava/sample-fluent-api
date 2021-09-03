@@ -3,7 +3,7 @@ package org.soujava.sandwich;
 import javax.money.MonetaryAmount;
 import java.util.Objects;
 
-class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuantityOrder, Order.DrinksOrder {
+class OrderFluent implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuantityOrder, Order.DrinksOrder {
 
     private final PricingTables pricingTables = PricingTables.INSTANCE;
 
@@ -19,7 +19,7 @@ class OrderBuilder implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuan
 
     private int drinkQuantity;
 
-    OrderBuilder(Bread bread) {
+    OrderFluent(Bread bread) {
         this.bread = bread;
     }
 
