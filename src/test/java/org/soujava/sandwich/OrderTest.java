@@ -21,6 +21,25 @@ public class OrderTest {
     //validation invalid quantity drinks
 
     @Test
+    public void shouldReturnErrorWhenSandwichQuantityIsInvalid() {
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Order
+                .bread(Bread.GLUTEN_FREE)
+                .size(Size.LARGE)
+                .meat()
+                .quantity(0)
+                .noBeveragesThanks());
+
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Order
+                        .bread(Bread.GLUTEN_FREE)
+                        .size(Size.LARGE)
+                        .meat()
+                        .quantity(-1)
+                        .noBeveragesThanks());
+
+    }
+    @Test
     public void shouldCreateAMeatOrderNoBeverages() {
         Checkout checkout = Order
                 .bread(Bread.GLUTEN_FREE)
