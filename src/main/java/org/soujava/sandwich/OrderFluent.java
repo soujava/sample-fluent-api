@@ -72,6 +72,16 @@ class OrderFluent implements Order.SizeOrder, Order.StyleOrder, Order.StyleQuant
     }
 
     @Override
+    public Checkout softDrink() {
+        return softDrink(1);
+    }
+
+    @Override
+    public Checkout cocktail() {
+        return cocktail(1);
+    }
+
+    @Override
     public Checkout noBeveragesThanks() {
         return checkout();
     }
