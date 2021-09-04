@@ -21,14 +21,43 @@ public class OrderTest {
     //validation invalid quantity drinks
 
     @Test
+    public void shouldReturnErrorWhenDrinkQuantityIsInvalid() {
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Order
+                        .bread(Bread.GLUTEN_FREE)
+                        .size(Size.LARGE)
+                        .meat()
+                        .softDrink(0));
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Order
+                        .bread(Bread.GLUTEN_FREE)
+                        .size(Size.LARGE)
+                        .meat()
+                        .softDrink(-1));
+
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Order
+                        .bread(Bread.GLUTEN_FREE)
+                        .size(Size.LARGE)
+                        .meat()
+                        .cocktail(0));
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Order
+                        .bread(Bread.GLUTEN_FREE)
+                        .size(Size.LARGE)
+                        .meat()
+                        .cocktail(-1));
+    }
+
+    @Test
     public void shouldReturnErrorWhenSandwichQuantityIsInvalid() {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 Order
-                .bread(Bread.GLUTEN_FREE)
-                .size(Size.LARGE)
-                .meat()
-                .quantity(0)
-                .noBeveragesThanks());
+                        .bread(Bread.GLUTEN_FREE)
+                        .size(Size.LARGE)
+                        .meat()
+                        .quantity(0)
+                        .noBeveragesThanks());
 
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 Order
@@ -39,6 +68,7 @@ public class OrderTest {
                         .noBeveragesThanks());
 
     }
+
     @Test
     public void shouldCreateAMeatOrderNoBeverages() {
         Checkout checkout = Order
