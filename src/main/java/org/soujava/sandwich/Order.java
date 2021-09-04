@@ -16,7 +16,7 @@ public interface Order {
         StyleQuantityOrder meat();
     }
 
-    interface StyleQuantityOrder {
+    interface StyleQuantityOrder extends DrinksOrder {
         DrinksOrder quantity(int quantity);
     }
 
@@ -25,6 +25,10 @@ public interface Order {
         Checkout softDrink(int quantity);
 
         Checkout cocktail(int quantity);
+
+        Checkout softDrink();
+
+        Checkout cocktail();
 
         Checkout noBeveragesThanks();
     }
